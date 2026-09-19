@@ -15,7 +15,7 @@
       --line: #eadfd4;
       --sky: #2f6f8f;
       --dark: #2a1f18;
-      --jalg: 4.6rem;
+      --jalg: 6.4rem;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -42,7 +42,7 @@
     .sots a.nahtav { display: inline-flex; }
     .sots svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
     .katusealune { padding: 1.4rem 1rem 2rem; max-width: 980px; margin: 0 auto; }
-    #peal, #tuba-vaade, #pakett-vaade { scroll-margin-top: 5.4rem; }
+    #peal, #tuba-vaade, #pakett-vaade, #paring-vaade { scroll-margin-top: 5.4rem; }
     h1 { font-size: clamp(1.8rem, 4vw + 1rem, 3rem); margin: 0 0 .35rem; }
     .slogan { margin: 0 0 1.4rem; color: var(--muted); }
     .uksed { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; }
@@ -76,6 +76,26 @@
       align-items: baseline; font-size: .92rem;
     }
     .jalg a { color: #fff; font-weight: 800; }
+    .jalg-valik {
+      font: inherit; color: #f6eee2; background: #3a2d24;
+      border: 1px solid #cbbba8; border-radius: 8px; padding: .25rem .4rem;
+    }
+    .jalg-paring {
+      font: inherit; font-weight: 800; cursor: pointer;
+      background: #f6eee2; color: var(--dark);
+      border: 0; border-radius: 8px; padding: .3rem .75rem;
+    }
+    .paring-vorm label { display: block; margin: .75rem 0 .28rem; font-size: .88rem; }
+    .paring-vorm input, .paring-vorm select, .paring-vorm textarea {
+      width: 100%; font: inherit; padding: .55rem .65rem;
+      border: 1px solid var(--line); border-radius: 10px; background: #fff;
+    }
+    .paring-vorm textarea { min-height: 8rem; resize: vertical; }
+    .paring-vorm button[type="submit"] {
+      margin-top: 1rem; font: inherit; font-weight: 800; cursor: pointer;
+      background: var(--dark); color: #f6eee2; border: 0;
+      border-radius: 10px; padding: .7rem 1.05rem;
+    }
     .vaade { display: none; }
     .vaade.sees { display: block; animation: avaVaade .85s ease-in-out forwards; }
     .vaade.kinni { display: block; animation: sulgeVaade .85s ease-in-out forwards; }
@@ -152,6 +172,23 @@
         </div>
       </article>
     </section>
+    <section id="paring-vaade" class="vaade">
+      <button class="tagasi" id="tagasi-paring" type="button"></button>
+      <article class="tuba">
+        <h2 id="paring-pealkiri"></h2>
+        <form class="paring-vorm" id="paring-vorm">
+          <label for="paring-valik" id="paring-sild-valik"></label>
+          <select id="paring-valik" name="valik" required></select>
+          <label for="paring-nimi" id="paring-sild-nimi"></label>
+          <input id="paring-nimi" name="nimi" type="text" autocomplete="name" required>
+          <label for="paring-side" id="paring-sild-side"></label>
+          <input id="paring-side" name="side" type="text" autocomplete="tel" required>
+          <label for="paring-sonum" id="paring-sild-sonum"></label>
+          <textarea id="paring-sonum" name="sonum" required></textarea>
+          <button type="submit" id="paring-saada"></button>
+        </form>
+      </article>
+    </section>
   </main>
   <footer class="jalg" id="jalg"></footer>
   <div class="vaade-kast" id="vaade">
@@ -161,9 +198,24 @@
   </div>
   <script>
     const SILD = {
-      et: { uksed: "Teenused", paketid: "Paketid", teised: "Teised paketid", tagasi: "Tagasi majja" },
-      ru: { uksed: "Услуги", paketid: "Пакеты", teised: "Другие пакеты", tagasi: "Назад в дом" },
-      en: { uksed: "Services", paketid: "Packages", teised: "Other packages", tagasi: "Back to the house" }
+      et: {
+        uksed: "Teenused", paketid: "Paketid", teised: "Teised paketid", tagasi: "Tagasi majja",
+        paring: "Saada kohe päring", paringPealkiri: "Päring",
+        valik: "Valik", muu: "Muu", nimi: "Nimi", side: "Telefon või e-post",
+        sonum: "Sõnum", saada: "Saada päring"
+      },
+      ru: {
+        uksed: "Услуги", paketid: "Пакеты", teised: "Другие пакеты", tagasi: "Назад в дом",
+        paring: "Отправить запрос сразу", paringPealkiri: "Запрос",
+        valik: "Выбор", muu: "Другое", nimi: "Имя", side: "Телефон или эл. почта",
+        sonum: "Сообщение", saada: "Отправить запрос"
+      },
+      en: {
+        uksed: "Services", paketid: "Packages", teised: "Other packages", tagasi: "Back to the house",
+        paring: "Send inquiry now", paringPealkiri: "Inquiry",
+        valik: "Choice", muu: "Other", nimi: "Name", side: "Phone or email",
+        sonum: "Message", saada: "Send inquiry"
+      }
     };
     let maja, paketid = [], toad = {}, keel = "et", aktiivne = "peal";
     const $ = (id) => document.getElementById(id);
@@ -215,6 +267,7 @@
         joonistaKatus(); joonistaPeal(); joonistaJalg();
         if (aktiivne === "tuba-vaade") naitaTuba($("tuba-vaade").dataset.id, true);
         if (aktiivne === "pakett-vaade") naitaPakett($("pakett-vaade").dataset.id, true);
+        if (aktiivne === "paring-vaade") naitaParing(true);
       };
       const fb = maja.sotsiaal && maja.sotsiaal.facebook;
       const ig = maja.sotsiaal && maja.sotsiaal.instagram;
@@ -248,6 +301,7 @@
       const failid = u.pildid || [];
       $("tuba-galerii").innerHTML = failid.length ? `<img src="toad/${id}/${failid[0]}" alt="">` : "";
       seaGalerii(failid.map((f) => "toad/" + id + "/" + f));
+      seaJalgValik(id);
       if (!ainultSisu) vahetaVaade("tuba-vaade");
     }
     function naitaPakett(id, ainultSisu) {
@@ -260,15 +314,77 @@
       $("pakett-hind").textContent = p.hind || "";
       $("sild-teised").textContent = SILD[keel].teised;
       $("teised-paketid").innerHTML = paketiKaardid(paketid.filter((x) => x.id !== id));
+      seaJalgValik(id);
       if (!ainultSisu) vahetaVaade("pakett-vaade");
+    }
+    function valikuRead() {
+      const read = [];
+      paketid.forEach((p) => read.push({ id: p.id, nimi: t(p.pealkiri) }));
+      [...(maja.uksed || []), ...(maja.allkorrus_toad || [])].forEach((id) => {
+        const u = toad[id];
+        read.push({ id, nimi: t(u && u.pealkiri) || id });
+      });
+      read.push({ id: "muu", nimi: SILD[keel].muu });
+      return read;
+    }
+    function valikuHtml(valitud) {
+      return valikuRead().map((r) =>
+        `<option value="${r.id}" ${r.id === valitud ? "selected" : ""}>${r.nimi}</option>`
+      ).join("");
+    }
+    function jalgValik() {
+      const s = $("jalg-valik");
+      return s ? s.value : "";
+    }
+    function seaJalgValik(id) {
+      const s = $("jalg-valik");
+      if (s && id && [...s.options].some((o) => o.value === id)) s.value = id;
+    }
+    function naitaParing(ainultSisu) {
+      const sild = SILD[keel];
+      $("tagasi-paring").textContent = sild.tagasi;
+      $("paring-pealkiri").textContent = sild.paringPealkiri;
+      $("paring-sild-valik").textContent = sild.valik;
+      $("paring-sild-nimi").textContent = sild.nimi;
+      $("paring-sild-side").textContent = sild.side;
+      $("paring-sild-sonum").textContent = sild.sonum;
+      $("paring-saada").textContent = sild.saada;
+      const praegu = $("paring-valik").value || jalgValik();
+      $("paring-valik").innerHTML = valikuHtml(praegu);
+      if (!ainultSisu) vahetaVaade("paring-vaade");
+    }
+    function saadaParing(e) {
+      e.preventDefault();
+      const mail = (maja.jalg && maja.jalg.email) || "";
+      if (!mail) return;
+      const valikId = $("paring-valik").value;
+      const valikNimi = (valikuRead().find((r) => r.id === valikId) || {}).nimi || valikId;
+      const nimi = $("paring-nimi").value.trim();
+      const side = $("paring-side").value.trim();
+      const sonum = $("paring-sonum").value.trim();
+      const teema = SILD[keel].paringPealkiri + ": " + valikNimi;
+      const keha = [
+        SILD[keel].valik + ": " + valikNimi,
+        SILD[keel].nimi + ": " + nimi,
+        SILD[keel].side + ": " + side,
+        "",
+        sonum
+      ].join("\n");
+      window.location.href = "mailto:" + mail +
+        "?subject=" + encodeURIComponent(teema) +
+        "&body=" + encodeURIComponent(keha);
     }
     function joonistaJalg() {
       const tel = (maja.jalg && maja.jalg.telefon) || "";
       const mail = (maja.jalg && maja.jalg.email) || "";
+      const hoia = jalgValik();
       $("jalg").innerHTML =
         `<span>${t(maja.jalg && maja.jalg.tekst)}</span>` +
         (tel ? `<a href="tel:${tel.replace(/\\s/g,'')}">${tel}</a>` : "") +
-        (mail ? `<a href="mailto:${mail}">${mail}</a>` : "");
+        (mail ? `<a href="mailto:${mail}">${mail}</a>` : "") +
+        `<select class="jalg-valik" id="jalg-valik" aria-label="${SILD[keel].valik}">${valikuHtml(hoia)}</select>` +
+        `<button class="jalg-paring" id="jalg-paring" type="button">${SILD[keel].paring}</button>`;
+      $("jalg-paring").onclick = () => naitaParing();
     }
     function seaGalerii(teed) {
       const kast = $("vaade"), suur = $("vaadePilt"), riba = $("vaadeRiba");
@@ -316,6 +432,8 @@
     $("koju").onclick = (e) => { e.preventDefault(); vahetaVaade("peal"); };
     $("tagasi-tuba").onclick = () => vahetaVaade("peal");
     $("tagasi-pakett").onclick = () => vahetaVaade("peal");
+    $("tagasi-paring").onclick = () => vahetaVaade("peal");
+    $("paring-vorm").addEventListener("submit", saadaParing);
     document.addEventListener("keydown", (e) => {
       if ($("vaade").classList.contains("sees") && e.key === "Escape") $("vaadeSulge").click();
     });
