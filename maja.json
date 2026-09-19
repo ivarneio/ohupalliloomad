@@ -1,15 +1,19 @@
 {
   "pohikeel": "et",
-  "keeled": ["et", "ru", "en"],
+  "keeled": [
+    "et",
+    "ru",
+    "en"
+  ],
   "nimi": {
     "et": "Õhupalliloomad",
     "ru": "Воздушные фигурки",
     "en": "Balloon Animals"
   },
   "slogan": {
-    "et": "Õhupallifiguurid, näomaalingud ja glitter sünnipäevale.",
-    "ru": "Фигурки из шаров, аквагрим и блёстки на день рождения.",
-    "en": "Balloon figures, face paint and glitter for the birthday."
+    "et": "Eesti kiireimate näppudega õhupallimeister.",
+    "ru": "Мастер шаров с самыми быстрыми пальцами в Эстонии.",
+    "en": "Estonia's quickest-fingered balloon artist."
   },
   "sotsiaal": {
     "facebook": "",
@@ -24,6 +28,12 @@
     "telefon": "+372 5690 9596",
     "email": "meelika@yahoo.com"
   },
-  "uksed": ["pallid", "maaling", "glitter"],
-  "allkorrus_toad": ["kingitused"]
+  "uksed": [
+    "pallid",
+    "maaling",
+    "glitter"
+  ],
+  "allkorrus_toad": [
+    "kingitused"
+  ]
 }

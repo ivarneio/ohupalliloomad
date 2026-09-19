@@ -2,7 +2,10 @@
 
 Meelika Mäeorg / OÜ Balfonia koduleht malli `ivarneio/mall` luul.
 
-Luu (`index.html`) on lukus. Nahk elab JSON-is ja piltides.
+Luu (`index.html`) tuleb mallist `ivarneio/mall` ja on lukus.
+Uus loogika: vaatevahetus 0,85 s, galerii suur vaade ribaga, automaatne slaid 2 s, keel localStorage-is.
+`allkorrus_toad` laetakse, aga luu joonistab ukseks ainult `uksed` (kolm). Kingitused ootavad luu konksu või jäävad tekstina paketti.
+Nahk elab JSON-is ja piltides.
 
 ## Uksed
 - pallid — õhupallifiguurid
