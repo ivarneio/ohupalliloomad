@@ -1,0 +1,46 @@
+{
+  "paketid": [
+    {
+      "id": "pakett-1",
+      "pilt": "",
+      "pealkiri": {
+        "et": "Sünnipäevapakett I",
+        "ru": "Пакет I",
+        "en": "Birthday package I"
+      },
+      "kirjeldus": {
+        "et": "Näomaalingud ja õhupallifiguurid. Meelika on peol 2,5 tundi. Sobib kuni 15 lapsele.",
+        "ru": "Аквагрим и фигурки из шаров. Меэлика на празднике 2,5 часа. До 15 детей.",
+        "en": "Face painting and balloon figures. Meelika stays 2.5 hours. Up to 15 children."
+      },
+      "meta": {
+        "et": "2,5 tundi · kuni 15 last",
+        "ru": "2,5 часа · до 15 детей",
+        "en": "2.5 hours · up to 15 children"
+      },
+      "hind": "195 €",
+      "toad": ["pallid", "maaling"]
+    },
+    {
+      "id": "pakett-2",
+      "pilt": "",
+      "pealkiri": {
+        "et": "Sünnipäevapakett II",
+        "ru": "Пакет II",
+        "en": "Birthday package II"
+      },
+      "kirjeldus": {
+        "et": "Glittertätoveeringud ja õhupallifiguurid. Meelika on peol 2,5 tundi. Sobib kuni 20 lapsele, sest glitter käib kiiremini.",
+        "ru": "Блёстки-тату и фигурки из шаров. Меэлика на празднике 2,5 часа. До 20 детей.",
+        "en": "Glitter tattoos and balloon figures. Meelika stays 2.5 hours. Up to 20 children, because glitter is quicker."
+      },
+      "meta": {
+        "et": "2,5 tundi · kuni 20 last",
+        "ru": "2,5 часа · до 20 детей",
+        "en": "2.5 hours · up to 20 children"
+      },
+      "hind": "195 €",
+      "toad": ["pallid", "glitter"]
+    }
+  ]
+}
