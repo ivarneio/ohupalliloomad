@@ -1,0 +1,29 @@
+{
+  "pohikeel": "et",
+  "keeled": ["et", "ru", "en"],
+  "nimi": {
+    "et": "Õhupalliloomad",
+    "ru": "Воздушные фигурки",
+    "en": "Balloon Animals"
+  },
+  "slogan": {
+    "et": "Õhupallifiguurid, näomaalingud ja glitter sünnipäevale.",
+    "ru": "Фигурки из шаров, аквагрим и блёстки на день рождения.",
+    "en": "Balloon figures, face paint and glitter for the birthday."
+  },
+  "sotsiaal": {
+    "facebook": "",
+    "instagram": "https://www.instagram.com/meelika_ohupalliloomad/"
+  },
+  "jalg": {
+    "tekst": {
+      "et": "Broneeri pidu. Kirjuta või helista Meelikale.",
+      "ru": "Забронируй праздник. Напиши или позвони Меэлике.",
+      "en": "Book the party. Write or call Meelika."
+    },
+    "telefon": "+372 5690 9596",
+    "email": "meelika@yahoo.com"
+  },
+  "uksed": ["pallid", "maaling", "glitter"],
+  "allkorrus_toad": ["kingitused"]
+}
